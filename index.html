@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio</title>
+    <style>
+        /* Estilos para la pantalla de carga */
+        .loader {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            background-image: url('html/backgrounds/1.png');
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* Estilos para el botón */
+        #btn-game {
+            position: absolute;
+            bottom: 93px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 15px 50px;
+            background-color: #47be0b;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        #btn-game:hover {
+            background-color: #0056b3;
+        }
+
+        /* Estilos para la animación de hamburguesa */
+        .hamburger {
+            position: absolute;
+            top: -50px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 40px;
+            opacity: 0;
+            animation: hamburgerAppear 2s ease forwards;
+        }
+
+        @keyframes hamburgerAppear {
+            0% {
+                top: -50px;
+                opacity: 0;
+            }
+            100% {
+                top: 50px;
+                opacity: 1;
+            }
+        }
+
+        /* Estilos para hacer responsivo */
+        @media screen and (max-width: 600px) {
+            #btn-game {
+                font-size: 16px;
+            }
+            .hamburger {
+                font-size: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Pantalla de Carga con Imagen de Fondo, Botón y Animación de Hamburguesa -->
+    <div class="loader">
+        <button id="btn-game">EMPEZAR</button>
+        <div class="hamburger" id="hamburger">&#127828;</div>
+    </div>
+
+    <script>
+        // Redirigir al usuario a game.html cuando se hace clic en el botón
+        document.getElementById('btn-game').addEventListener('click', function() {
+            window.location.href = 'html/game.html';
+        });
+    </script>
+</body>
+</html>
+
