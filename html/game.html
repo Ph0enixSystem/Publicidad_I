@@ -36,6 +36,7 @@
             background-size: cover;
             background-position: center;
             z-index: 0;
+            transition: opacity 0.5s ease; /* Transición de opacidad para el efecto de desvanecimiento */
         }
 
         #video-background {
@@ -91,35 +92,39 @@
         <button id="hamburger" onclick="window.location.href = 'burger.html';">&#127828;</button>
     </div>
     <script>
-        const backgrounds = ['backgrounds/1.jpeg','backgrounds/2.png','backgrounds/3.png','backgrounds/4.png','backgrounds/5.png','backgrounds/6.jpeg','backgrounds/7.png','backgrounds/8.jpeg','backgrounds/9.jpeg','backgrounds/10.jpeg','backgrounds/11.jpeg','backgrounds/12.jpeg','backgrounds/13.jpeg','backgrounds/14.jpeg'];
+        const backgrounds = ['backgrounds/1.png','backgrounds/2.png','backgrounds/3.png','backgrounds/4.png','backgrounds/5.png','backgrounds/6.jpeg','backgrounds/7.png','backgrounds/8.png','backgrounds/9.png','backgrounds/10.png','backgrounds/11.png','backgrounds/12.png','backgrounds/13.png','backgrounds/14.png'];
         let currentBackgroundIndex = 0;
         let backgroundElement = document.getElementById('background');
         let videoBackground = document.getElementById('video-background');
 
-        // Función para cambiar el fondo al siguiente
         function changeBackgroundNext() {
             currentBackgroundIndex = (currentBackgroundIndex + 1) % backgrounds.length;
-            backgroundElement.style.backgroundImage = `url('${backgrounds[currentBackgroundIndex]}')`;
-            toggleVideoBackground();
+            backgroundElement.style.opacity = '0'; // Cambiar la opacidad a 0 para que se desvanezca
+            setTimeout(() => {
+                backgroundElement.style.backgroundImage = `url('${backgrounds[currentBackgroundIndex]}')`;
+                backgroundElement.style.opacity = '1'; // Restaurar la opacidad a 1 para que aparezca
+                toggleVideoBackground();
+            }, 500); // 500ms para que termine la transición
         }
 
-        // Función para cambiar el fondo al anterior
         function changeBackgroundPrevious() {
             currentBackgroundIndex = (currentBackgroundIndex - 1 + backgrounds.length) % backgrounds.length;
-            backgroundElement.style.backgroundImage = `url('${backgrounds[currentBackgroundIndex]}')`;
-            toggleVideoBackground();
+            backgroundElement.style.opacity = '0'; // Cambiar la opacidad a 0 para que se desvanezca
+            setTimeout(() => {
+                backgroundElement.style.backgroundImage = `url('${backgrounds[currentBackgroundIndex]}')`;
+                backgroundElement.style.opacity = '1'; // Restaurar la opacidad a 1 para que aparezca
+                toggleVideoBackground();
+            }, 500); // 500ms para que termine la transición
         }
 
-        // Función para mostrar u ocultar el video de fondo
         function toggleVideoBackground() {
-            if (currentBackgroundIndex === 13) { // Si es la última imagen
-                videoBackground.style.display = 'block'; // Mostrar el video
+            if (currentBackgroundIndex === 13) {
+                videoBackground.style.display = 'block';
             } else {
-                videoBackground.style.display = 'none'; // Ocultar el video
+                videoBackground.style.display = 'none';
             }
         }
 
-        // Establecer el fondo inicial
         backgroundElement.style.backgroundImage = `url('${backgrounds[currentBackgroundIndex]}')`;
     </script>
 </body>
